@@ -3,6 +3,8 @@ package club.eridani.compose.jwm
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.WindowState
 import io.github.humbleui.jwm.App
@@ -20,9 +22,9 @@ fun ManageWindow(
         internalWindow.setVisible(visible)
     }
 
-    LaunchedEffect(title) {
+    /*LaunchedEffect(title) {
         internalWindow.setTitle(title)
-    }
+    }*/
 
     LaunchedEffect(state.isMinimized) {
         if (state.isMinimized) {

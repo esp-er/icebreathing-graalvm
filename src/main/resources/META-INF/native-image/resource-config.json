@@ -1,0 +1,18 @@
+{
+  "resources":{
+  "includes":[
+    {
+      "pattern":"\\Qlibjwm_x64.so\\E"
+    }, 
+    {
+      "pattern":"\\Qlibskiko-linux-x64.so.sha256\\E"
+    },
+    {
+      "pattern":"\\Qlibskiko-linux-x64.so\\E"
+    }
+  ]},
+  "bundles":[{
+      "name":"sun.awt.resources.awt",
+      "classNames":["sun.awt.resources.awt"]
+    }]
+}

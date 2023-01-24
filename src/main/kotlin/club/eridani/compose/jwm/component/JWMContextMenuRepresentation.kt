@@ -39,7 +39,7 @@ class JWMContextMenuRepresentation(
 ) : ContextMenuRepresentation {
 
     @Composable
-    override fun Representation(state: ContextMenuState, items: List<ContextMenuItem>) {
+    override fun Representation(state: ContextMenuState, items: () -> List<ContextMenuItem>) {
         val isOpen = state.status is ContextMenuState.Status.Open
         if (isOpen) {
             Popup(
@@ -64,7 +64,7 @@ class JWMContextMenuRepresentation(
                         .verticalScroll(rememberScrollState())
 
                 ) {
-                    items.distinctBy { it.label }.forEach { item ->
+                    /*items.distinctBy { it.label }.forEach { item ->
                         MenuItemContent(
                             itemHoverColor = itemHoverColor,
                             onClick = {
@@ -74,7 +74,7 @@ class JWMContextMenuRepresentation(
                         ) {
                             BasicText(text = item.label, style = TextStyle(color = textColor))
                         }
-                    }
+                    }*/
                 }
             }
         }

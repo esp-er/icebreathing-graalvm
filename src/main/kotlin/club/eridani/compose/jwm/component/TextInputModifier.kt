@@ -28,7 +28,7 @@ fun Modifier.textInputFocusable(): Modifier {
                 pos.value ?: return@onFocusChanged
                 val (x, y) = (pos.value!!.positionInWindow())
                 val (w, h) = (pos.value!!.size)
-                window.setTextInputClient { start, end ->
+                window.setTextInputClient { _, _ ->
                     IRect.makeXYWH(x.toInt(), y.toInt(), w, h)
                 }
             } else {

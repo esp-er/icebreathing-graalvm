@@ -1,0 +1,162 @@
+
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.7.20'
+    id 'org.jetbrains.compose' version "1.3.0-rc01"
+
+    id 'org.graalvm.buildtools.native' version '0.9.19'
+    id 'com.google.osdetector' version '1.7.0'
+}
+
+group = "club.eridani"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+    maven { url 'https://maven.pkg.jetbrains.space/public/p/compose/dev' }
+    google()
+}
+
+dependencies {
+    //implementation 'io.github.humbleui:jwm:0.4.12'
+    implementation files('libs/jwm.jar')
+    implementation files('libs/types.jar')
+    implementation(compose.desktop.currentOs)
+    implementation(compose.material)
+    implementation(compose.materialIconsExtended)
+
+//    compileOnly "org.graalvm.nativeimage:svm:$graalvmVersion"
+}
+
+
+compose.desktop {
+    application {
+        mainClass = "TestWindowKt"
+    }
+}
+
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    //jvmArgs = '--add-exports=java.desktop/com.awt.X11.XToolkit=ALL-UNNAMED'
+}
+
+
+graalvmNative {
+	toolchainDetection = false
+    binaries{
+     main{
+      imageName = 'icebreathing'
+      mainClass = 'TestWindowKt'
+      debug = false
+      buildArgs.add('-Djava.awt.headless=false')
+      buildArgs.add('-Ob')
+      //buildArgs.add('--initialize-at-build-time=kotlinx')
+     }
+    }
+
+    // Injects the native-image-agent into supported tasks if `-Pagent` is specified
+agent {
+    defaultMode = "standard" // Default agent mode if one isn't specified using `-Pagent=mode_name`
+
+    modes {
+        // The standard agent mode generates metadata without conditions.
+        standard {
+        }
+        // The conditional agent mode generates metadata with conditions.
+        // The direct agent mode allows users to directly pass options to the agent.
+        direct {
+            // {output_dir} is a special string expanded by the plugin to where the agent files would usually be output.
+            options.add("config-output-dir={output_dir}")
+        }
+    }
+
+    //callerFilterFiles.from("filter.json")
+    //accessFilterFiles.from("filter.json")
+    //builtinCallerFilter = true
+    //builtinHeuristicFilter = true
+    //enableExperimentalPredefinedClasses = true
+    //enableExperimentalUnsafeAllocationTracing = true
+    //trackReflectionMetadata = true
+
+    // Copies metadata collected from tasks into the specified directories.
+    metadataCopy {
+        //   inputTaskNames.add("test") // Tasks previously executed with the agent attached.
+        inputTaskNames.add("run") // Tasks previously executed with the agent attached.
+        outputDirectories.add("src/main/resources/META-INF/native-image")
+        mergeWithExisting = false // Instead of copying, merge with existing metadata in the output directories.
+    }
+
+    /*
+    By default, if `-Pagent` is specified, all tasks that extend JavaForkOptions are instrumented.
+    This can be limited to only specific tasks that match this predicate.
+     */
+    //tasksToInstrumentPredicate = t -> true
+}
+
+
+toolchainDetection = false
+/*
+    binaries {
+        main {
+            imageName = awtskija
+            mainClass = "com.patriker.awtskija.BasicFrame"
+            debug = false
+            verbose = true
+            fallback = false
+
+            //buildArgs.add("-H:+UseCompressedReferences") //EE only
+            //buildArgs.add('--initialize-at-run-time=org.jetbrains.skiko,org.jetbrains.skia.impl')
+            buildArgs.add('--initialize-at-build-time=kotlin,kotlinx')
+            buildArgs.add('--native-image-info')
+            buildArgs.add('-Djava.awt.headless=false')
+            buildArgs.add("-H:Path=$buildDir/$nativeImageDirName")
+            buildArgs.add("-H:TempDirectory=$buildDir/tmp/$nativeImageDirName")
+            //buildArgs.add("--allow-incomplete-classpath")
+            //buildArgs.add('-H:+TraceNativeToolUsage')
+
+            useFatJar = false
+            if (currentPlatform.startsWith('windows')) {
+                //temp fix for the "Unsupported OptionOrigin" error in GraalVM 22.1.0 version in Windows
+                //(see https://github.com/oracle/graal/issues/4502)
+                useArgFile = false
+            }
+        }
+    }
+*/
+
+}
+
+
+
+tasks.named("nativeCompile") {
+    //use the uber jar if long classpath becomes a problem in Windows:
+    //dependsOn uberJar
+    //classpathJar = uberJar.archiveFile
+    //finalizedBy removeUnneededDllFiles
+}
+
+//returns the <os>-<arch> platform string suitable for retrieval of LWJGL natives
+//(if <arch> is blank, it implies "x86_64")
+def getCurrentPlatform() {
+    def os = osdetector.os
+    def lwjglOS = os == 'linux' ? 'linux' :
+            os == 'osx' ? 'macos' :
+                    os == 'windows' ? 'windows' :
+                            'unknown'
+    //if (lwjglOS == 'unknown')
+    //throw new GradleException('Unsupported OS: ' + os)
+
+    def arch = osdetector.arch
+    //consider 64-bit architectures only
+    def lwjglArch = arch == 'x86_64' ? '' :
+            arch == 'aarch_64' ? 'arm64' :
+                    'unknown'
+    //if (lwjglArch == 'unknown')
+    //   throw new GradleException('Unsupported Architecture: ' + arch)
+
+    return (lwjglArch == '' ? lwjglOS : (lwjglOS + '-' + lwjglArch))
+}
+

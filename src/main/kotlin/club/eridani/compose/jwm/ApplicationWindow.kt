@@ -12,6 +12,7 @@ import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.WindowPosition
@@ -26,8 +27,13 @@ import java.awt.GraphicsEnvironment
 import java.util.function.Consumer
 import java.awt.event.KeyEvent as AwtKeyEvent
 
+
+
 open class ApplicationWindow(
     val onClose: ApplicationWindow.() -> Unit = { windowState?.isMinimized = true },
+    val title: String = "JWMWindow",
+    val winSize: IntSize = IntSize(800, 600),
+    val winPos: IntSize = IntSize(0, 0),
     val content: @Composable () -> Unit
 ) : Consumer<Event> {
 
@@ -49,22 +55,35 @@ open class ApplicationWindow(
 
     }
 
+    fun getBounds(): IntSize{
+       return IntSize(container.graphicsConfiguration.bounds.width, container.graphicsConfiguration.bounds.height)
+    }
+
     val window = App.makeWindow()
 
+    fun setPos(x: Int, y: Int){
+        window.setWindowPosition(x,y)
+    }
     init {
+        //container.graphicsConfiguration.let { println("X: ${it.bounds.width}, y: ${it.bounds.height}") }
+        window.setTitle(title)
         composeScene.setContent { BasicSetup(this@ApplicationWindow, content) }
     }
 
-    private var lastEventMouseMove = EventMouseMove(0, 0, 0, 0)
+    private var lastEventMouseMove = EventMouseMove(0, 0, 0, 0, 0, 0)
+
 
     var windowState: WindowState? = null
 
     init {
         window.eventListener = this
+
         updateConstrain()
         window.layer = createPlatformLayer()
         window.setVisible(true)
         window.setTextInputEnabled(true)
+        window.setWindowSize(winSize.width, winSize.height)
+        window.setWindowPosition(winPos.width, winPos.height)
     }
 
 
@@ -74,6 +93,7 @@ open class ApplicationWindow(
     private fun updateConstrain() {
         windowState?.size = DpSize(window.windowRect.width.dp, window.windowRect.height.dp)
         composeScene.constraints = Constraints(maxWidth = window.contentRect.width, maxHeight = window.contentRect.height)
+
     }
 
 
@@ -82,10 +102,11 @@ open class ApplicationWindow(
             is EventWindowFocusIn -> windowInfo.isWindowFocused = true
             is EventWindowFocusOut -> windowInfo.isWindowFocused = false
 
-            is EventFrame -> window.requestFrame()
-            is EventFrameSkia -> composeScene.render(e.surface.canvas.clear(Color.TRANSPARENT), System.nanoTime())
-
-            is EventWindowResize -> updateConstrain()
+            is EventFrame -> { window.requestFrame()}
+            is EventFrameSkia ->{ composeScene.render(e.surface.canvas.clear(Color.WHITE), System.nanoTime()) }
+            is EventWindowResize -> {
+                updateConstrain()
+            }
             is EventWindowCloseRequest -> onClose()
 
             is EventWindowMove -> windowState?.position = WindowPosition(e.windowLeft.dp, e.windowTop.dp)

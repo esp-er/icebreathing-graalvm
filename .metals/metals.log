@@ -1,0 +1,51 @@
+2023.01.09 02:21:53 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/patrik/Documents/kotlin/JWM-Compose/.metals/lsp.trace.json or /home/patrik/.cache/metals/lsp.trace.json[0m
+2023.01.09 02:21:53 INFO  logging to file /home/patrik/Documents/kotlin/JWM-Compose/.metals/metals.log[0m
+2023.01.09 02:21:53 INFO  Started: Metals version 0.11.2 in workspace '/home/patrik/Documents/kotlin/JWM-Compose' for client coc.nvim 0.0.80.[0m
+2023.01.09 02:21:53 INFO  Parse release: 19.0.1[0m
+2023.01.09 02:21:55 INFO  time: initialize in 1.87s[0m
+2023.01.09 02:21:55 WARN  Build server is not auto-connectable.[0m
+2023.01.11 00:22:31 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/patrik/Documents/kotlin/iceman-graal-jwm/.metals/lsp.trace.json or /home/patrik/.cache/metals/lsp.trace.json[0m
+2023.01.11 00:22:31 INFO  logging to file /home/patrik/Documents/kotlin/iceman-graal-jwm/.metals/metals.log[0m
+2023.01.11 00:22:31 INFO  Started: Metals version 0.11.2 in workspace '/home/patrik/Documents/kotlin/iceman-graal-jwm' for client coc.nvim 0.0.80.[0m
+2023.01.11 00:22:31 INFO  Parse release: 19.0.1[0m
+2023.01.11 00:22:33 INFO  time: initialize in 1.44s[0m
+2023.01.11 00:22:33 WARN  Build server is not auto-connectable.[0m
+2023.01.11 00:22:57 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/patrik/Documents/kotlin/iceman-graal-jwm/.metals/lsp.trace.json or /home/patrik/.cache/metals/lsp.trace.json[0m
+2023.01.11 00:22:57 INFO  logging to file /home/patrik/Documents/kotlin/iceman-graal-jwm/.metals/metals.log[0m
+2023.01.11 00:22:57 INFO  Started: Metals version 0.11.2 in workspace '/home/patrik/Documents/kotlin/iceman-graal-jwm' for client coc.nvim 0.0.80.[0m
+2023.01.11 00:22:57 INFO  Parse release: 19.0.1[0m
+2023.01.11 00:22:59 INFO  time: initialize in 1.79s[0m
+2023.01.11 00:22:59 WARN  Build server is not auto-connectable.[0m
+2023.01.11 00:22:59 INFO  skipping build import with status 'Dismissed'[0m
+2023.01.11 00:23:22 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/patrik/Documents/kotlin/iceman-graal-jwm/.metals/lsp.trace.json or /home/patrik/.cache/metals/lsp.trace.json[0m
+2023.01.11 00:23:22 INFO  logging to file /home/patrik/Documents/kotlin/iceman-graal-jwm/.metals/metals.log[0m
+2023.01.11 00:23:22 INFO  Started: Metals version 0.11.2 in workspace '/home/patrik/Documents/kotlin/iceman-graal-jwm' for client coc.nvim 0.0.80.[0m
+2023.01.11 00:23:22 INFO  Parse release: 19.0.1[0m
+2023.01.11 00:23:24 INFO  time: initialize in 1.31s[0m
+2023.01.11 00:23:24 WARN  Build server is not auto-connectable.[0m
+2023.01.11 00:23:24 INFO  skipping build import with status 'Dismissed'[0m
+2023.01.11 00:31:51 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/patrik/Documents/kotlin/iceman-graal-jwm/.metals/lsp.trace.json or /home/patrik/.cache/metals/lsp.trace.json[0m
+2023.01.11 00:31:51 INFO  logging to file /home/patrik/Documents/kotlin/iceman-graal-jwm/.metals/metals.log[0m
+2023.01.11 00:31:51 INFO  Started: Metals version 0.11.2 in workspace '/home/patrik/Documents/kotlin/iceman-graal-jwm' for client coc.nvim 0.0.80.[0m
+2023.01.11 00:31:51 INFO  Parse release: 17.0.5[0m
+2023.01.11 00:31:52 INFO  time: initialize in 1.32s[0m
+2023.01.11 00:31:53 WARN  Build server is not auto-connectable.[0m
+2023.01.11 02:30:21 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/patrik/Documents/kotlin/iceman-graal-jwm/.metals/lsp.trace.json or /home/patrik/.cache/metals/lsp.trace.json[0m
+2023.01.11 02:30:22 INFO  logging to file /home/patrik/Documents/kotlin/iceman-graal-jwm/.metals/metals.log[0m
+2023.01.11 02:30:22 INFO  Started: Metals version 0.11.2 in workspace '/home/patrik/Documents/kotlin/iceman-graal-jwm' for client coc.nvim 0.0.80.[0m
+2023.01.11 02:30:22 INFO  Parse release: 17.0.4[0m
+2023.01.11 02:30:23 INFO  time: initialize in 1.47s[0m
+2023.01.11 02:30:23 WARN  Build server is not auto-connectable.[0m
+2023.01.15 22:40:12 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/patrik/Documents/kotlin/iceman-graal-jwm/.metals/lsp.trace.json or /home/patrik/.cache/metals/lsp.trace.json[0m
+2023.01.15 22:40:13 INFO  logging to file /home/patrik/Documents/kotlin/iceman-graal-jwm/.metals/metals.log[0m
+2023.01.15 22:40:13 INFO  Started: Metals version 0.11.2 in workspace '/home/patrik/Documents/kotlin/iceman-graal-jwm' for client coc.nvim 0.0.80.[0m
+2023.01.15 22:40:13 INFO  Parse release: 17.0.5[0m
+2023.01.15 22:40:14 INFO  time: initialize in 1.49s[0m
+2023.01.15 22:40:14 WARN  Build server is not auto-connectable.[0m
+2023.01.15 22:40:15 INFO  skipping build import with status 'Requested'[0m
+2023.01.23 08:20:42 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/patrik/Documents/kotlin/iceman-graal-jwm/.metals/lsp.trace.json or /home/patrik/.cache/metals/lsp.trace.json[0m
+2023.01.23 08:20:43 INFO  logging to file /home/patrik/Documents/kotlin/iceman-graal-jwm/.metals/metals.log[0m
+2023.01.23 08:20:43 INFO  Started: Metals version 0.11.2 in workspace '/home/patrik/Documents/kotlin/iceman-graal-jwm' for client coc.nvim 0.0.80.[0m
+2023.01.23 08:20:43 INFO  Parse release: 17.0.5[0m
+2023.01.23 08:20:44 INFO  time: initialize in 1.55s[0m
+2023.01.23 08:20:45 WARN  Build server is not auto-connectable.[0m
